@@ -1,76 +1,76 @@
 name: Build Bali Travel Calculator APK
 
 on:
-workflow_dispatch:
-push:
-paths:
-- 'src/'
-- 'public/'
-- 'index.html'
-- 'package.json'
-- 'vite.config.ts'
-- '.github/workflows/android-apk.yml'
+  workflow_dispatch:
+  push:
+    paths:
+      - 'src/**'
+      - 'public/**'
+      - 'index.html'
+      - 'package.json'
+      - 'vite.config.ts'
+      - '.github/workflows/android-apk.yml'
 
 permissions:
-contents: read
+  contents: read
 
 jobs:
-build-apk:
-runs-on: ubuntu-latest
+  build-apk:
+    runs-on: ubuntu-latest
 
-steps:
-  - name: Checkout source
-    uses: actions/checkout@v4
+    steps:
+      - name: Checkout source
+        uses: actions/checkout@v4
 
-  - name: Set up Node.js
-    uses: actions/setup-node@v4
-    with:
-      node-version: '22'
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
 
-  - name: Set up Java 21
-    uses: actions/setup-java@v4
-    with:
-      distribution: temurin
-      java-version: '21'
+      - name: Set up Java 21
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '21'
 
-  - name: Set up Android SDK
-    uses: android-actions/setup-android@v3
-    with:
-      cmdline-tools-version: '15859902'
-      packages: platform-tools
+      - name: Set up Android SDK
+        uses: android-actions/setup-android@v3
+        with:
+          cmdline-tools-version: '15859902'
+          packages: platform-tools
 
-  - name: Install project dependencies
-    run: npm install --legacy-peer-deps
+      - name: Install project dependencies
+        run: npm install --legacy-peer-deps
 
-  - name: Install Capacitor Android tooling
-    run: npm install --no-save --legacy-peer-deps @capacitor/core@7 @capacitor/cli@7 @capacitor/android@7
+      - name: Install Capacitor Android tooling
+        run: npm install --no-save --legacy-peer-deps @capacitor/core@7 @capacitor/cli@7 @capacitor/android@7
 
-  - name: Build web app
-    run: npm run build
+      - name: Build web app
+        run: npm run build
 
-  - name: Configure Capacitor wrapper
-    run: |
-      cat > capacitor.config.json <<'JSON'
-      {
-        "appId": "com.penggilas.balitravelcalculator",
-        "appName": "Bali Travel Calculator",
-        "webDir": "dist",
-        "bundledWebRuntime": false
-      }
-      JSON
-      npx cap add android
-      npx cap sync android
+      - name: Configure Capacitor wrapper
+        run: |
+          cat > capacitor.config.json <<'JSON'
+          {
+            "appId": "com.penggilas.balitravelcalculator",
+            "appName": "Bali Travel Calculator",
+            "webDir": "dist",
+            "bundledWebRuntime": false
+          }
+          JSON
+          npx cap add android
+          npx cap sync android
 
-  - name: Build debug APK
-    working-directory: android
-    run: |
-      chmod +x gradlew
-      ./gradlew assembleDebug --no-daemon
+      - name: Build debug APK
+        working-directory: android
+        run: |
+          chmod +x gradlew
+          ./gradlew assembleDebug --no-daemon
 
-  - name: Upload APK
-    uses: actions/upload-artifact@v4
-    with:
-      name: Bali-Travel-Calculator-debug-APK
-      path: android/app/build/outputs/apk/debug/app-debug.apk
-      if-no-files-found: error
-      retention-days: 14
+      - name: Upload APK
+        uses: actions/upload-artifact@v4
+        with:
+          name: Bali-Travel-Calculator-debug-APK
+          path: android/app/build/outputs/apk/debug/app-debug.apk
+          if-no-files-found: error
+          retention-days: 14
