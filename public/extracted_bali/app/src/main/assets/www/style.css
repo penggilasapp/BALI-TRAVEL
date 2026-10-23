@@ -1,0 +1,1804 @@
+/* =========================================================
+   BALI TRAVEL CALCULATOR
+   MAIN STYLESHEET
+   ========================================================= */
+
+
+/* =========================================================
+   01. GLOBAL VARIABLES
+   ========================================================= */
+
+:root {
+    /* Base */
+    --bg-main: #f8fafc;
+    --white: #ffffff;
+
+    --text-dark: #0f172a;
+    --text-muted: #64748b;
+
+    --border-color: #e2e8f0;
+    --border-focus: #94a3b8;
+
+    /* Feature Colors */
+    --c-fuel: #ef4444;
+    --bg-fuel: #fee2e2;
+
+    --c-curr: #3b82f6;
+    --bg-curr: #e0f2fe;
+
+    --c-budg: #10b981;
+    --bg-budg: #d1fae5;
+
+    --c-splt: #a855f7;
+    --bg-splt: #f3e8ff;
+
+    --c-time: #f59e0b;
+    --bg-time: #fef3c7;
+
+    --c-dist: #14b8a6;
+    --bg-dist: #ccfbf1;
+
+    /* Radius */
+    --radius-sm: 10px;
+    --radius-md: 12px;
+    --radius-lg: 16px;
+    --radius-xl: 20px;
+
+    /* Shadow */
+    --shadow-card:
+        0 4px 12px rgba(0, 0, 0, 0.03);
+
+    --shadow-soft:
+        0 2px 8px rgba(0, 0, 0, 0.04);
+
+    --shadow-active:
+        0 2px 4px rgba(0, 0, 0, 0.05);
+
+    /* Animation */
+    --transition-fast: 0.2s ease;
+
+    --transition-page:
+        0.3s cubic-bezier(0.16, 1, 0.3, 1);
+
+    /* Fixed banner placement. Set to the height of any future bottom navigation. */
+    --bottom-nav-height: 0px;
+    --banner-gap: 8px;
+    --banner-height: 60px;
+}
+
+
+/* =========================================================
+   02. RESET
+   ========================================================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+
+    font-family: "Poppins", sans-serif;
+
+    -webkit-tap-highlight-color: transparent;
+}
+
+html {
+    width: 100%;
+    min-height: 100%;
+
+    background: var(--bg-main);
+}
+
+body {
+    width: 100%;
+    min-height: 100vh;
+
+    margin: 0;
+
+    background: var(--bg-main);
+    color: var(--text-dark);
+
+    overflow-x: hidden;
+}
+
+button,
+input,
+select,
+textarea {
+    font: inherit;
+}
+
+button {
+    border: 0;
+}
+
+button,
+select {
+    -webkit-user-select: none;
+    user-select: none;
+}
+
+button:focus-visible,
+input:focus-visible,
+select:focus-visible {
+    outline: 2px solid var(--c-curr);
+    outline-offset: 2px;
+}
+
+
+/* =========================================================
+   03. APP CONTAINER
+   ========================================================= */
+
+#app {
+    width: 100%;
+    min-height: 100vh;
+}
+
+.container {
+    width: 100%;
+    max-width: 480px;
+
+    min-height: 100vh;
+
+    margin: 0 auto;
+    padding: 24px 20px;
+
+    background: var(--bg-main);
+}
+
+
+/* =========================================================
+   04. SPA PAGE
+   ========================================================= */
+
+.app-page {
+    display: none;
+
+    width: 100%;
+    min-height: 100vh;
+}
+
+.app-page.active {
+    display: block;
+
+    /* Keep the last content clear of the fixed banner. */
+    padding-bottom: calc(var(--banner-height) + var(--bottom-nav-height) + env(safe-area-inset-bottom, 0px) + var(--banner-gap) + 24px);
+
+    animation:
+        slideIn var(--transition-page);
+}
+
+@keyframes slideIn {
+
+    from {
+        opacity: 0;
+        transform: translateX(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+
+/* =========================================================
+   05. HOME HEADER
+   ========================================================= */
+
+.app-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+
+    margin-bottom: 32px;
+}
+
+.header-titles {
+    min-width: 0;
+}
+
+.header-titles h1 {
+    color: var(--text-dark);
+
+    font-size: 1.25rem;
+    font-weight: 700;
+
+    line-height: 1.2;
+    letter-spacing: -0.5px;
+}
+
+.header-titles p {
+    margin-top: 4px;
+
+    color: var(--text-muted);
+
+    font-size: 0.85rem;
+    line-height: 1.4;
+}
+
+
+/* =========================================================
+   06. ICON BUTTON
+   ========================================================= */
+
+.btn-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 40px;
+    height: 40px;
+
+    flex: 0 0 40px;
+
+    padding: 0;
+
+    background: transparent;
+    color: var(--text-dark);
+
+    border-radius: var(--radius-sm);
+
+    font-size: 1.5rem;
+
+    cursor: pointer;
+
+    touch-action: manipulation;
+
+    transition:
+        background-color var(--transition-fast),
+        transform var(--transition-fast);
+}
+
+.btn-icon i {
+    pointer-events: none;
+}
+
+.btn-icon:hover {
+    background: rgba(15, 23, 42, 0.05);
+}
+
+.btn-icon:active {
+    transform: scale(0.94);
+}
+
+
+/* =========================================================
+   07. HOME MENU
+   ========================================================= */
+
+.menu-grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(2, minmax(0, 1fr));
+
+    gap: 16px;
+}
+
+.menu-card {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+
+    width: 100%;
+    min-height: 132px;
+
+    padding: 20px 16px;
+
+    background: var(--white);
+
+    border: 1px solid transparent;
+    border-radius: var(--radius-xl);
+
+    color: var(--text-dark);
+
+    text-align: left;
+
+    box-shadow: var(--shadow-card);
+
+    cursor: pointer;
+
+    touch-action: manipulation;
+
+    transition:
+        transform var(--transition-fast),
+        box-shadow var(--transition-fast),
+        border-color var(--transition-fast);
+}
+
+.menu-card:hover {
+    border-color: var(--border-color);
+
+    box-shadow:
+        0 6px 18px rgba(0, 0, 0, 0.05);
+}
+
+.menu-card:active {
+    transform: scale(0.97);
+}
+
+.menu-card span {
+    display: block;
+
+    color: var(--text-dark);
+
+    font-size: 0.9rem;
+    font-weight: 600;
+
+    line-height: 1.3;
+}
+
+
+/* =========================================================
+   08. FEATURE ICONS
+   ========================================================= */
+
+.icon-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 48px;
+    height: 48px;
+
+    margin-bottom: 16px;
+
+    border-radius: 14px;
+}
+
+.icon-wrapper i {
+    font-size: 24px;
+
+    pointer-events: none;
+}
+
+
+/* Fuel */
+
+.fuel-bg {
+    background: var(--bg-fuel);
+}
+
+.fuel-icon {
+    color: var(--c-fuel);
+}
+
+
+/* Currency */
+
+.currency-bg {
+    background: var(--bg-curr);
+}
+
+.currency-icon {
+    color: var(--c-curr);
+}
+
+
+/* Budget */
+
+.budget-bg {
+    background: var(--bg-budg);
+}
+
+.budget-icon {
+    color: var(--c-budg);
+}
+
+
+/* Split */
+
+.split-bg {
+    background: var(--bg-splt);
+}
+
+.split-icon {
+    color: var(--c-splt);
+}
+
+
+/* Travel Time */
+
+.time-bg {
+    background: var(--bg-time);
+}
+
+.time-icon {
+    color: var(--c-time);
+}
+
+
+/* Distance */
+
+.distance-bg {
+    background: var(--bg-dist);
+}
+
+.distance-icon {
+    color: var(--c-dist);
+}
+
+
+/* =========================================================
+   09. HOME FOOTER
+   ========================================================= */
+
+.footer-art {
+    margin-top: 40px;
+    padding-bottom: 20px;
+
+    text-align: center;
+}
+
+.footer-quote {
+    color: var(--text-muted);
+
+    font-family:
+        "Kalam",
+        "Comic Sans MS",
+        cursive,
+        sans-serif;
+
+    font-size: 1.1rem;
+    font-style: italic;
+
+    line-height: 1.4;
+}
+
+
+/* =========================================================
+   10. SUB PAGE HEADER
+   ========================================================= */
+
+.sub-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    min-height: 40px;
+
+    /* Keep the tool title/back control visible while the page scrolls. */
+    position: sticky;
+    top: 0;
+    z-index: 50;
+
+    /* Extend the sticky surface to the container edges. */
+    margin: -24px -20px 24px;
+    padding: 24px 20px 16px;
+
+    background: var(--bg-main);
+}
+
+.sub-header-title {
+    display: flex;
+    align-items: center;
+
+    min-width: 0;
+
+    gap: 8px;
+}
+
+.sub-header-title i {
+    flex: 0 0 auto;
+
+    font-size: 1.35rem;
+
+    pointer-events: none;
+}
+
+.sub-header-title h2 {
+    overflow: hidden;
+
+    color: var(--text-dark);
+
+    font-size: 1.1rem;
+    font-weight: 600;
+
+    line-height: 1.3;
+
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.btn-back {
+    width: 40px;
+    height: 40px;
+
+    font-size: 1.8rem;
+}
+
+.header-spacer {
+    width: 40px;
+    height: 40px;
+
+    flex: 0 0 40px;
+}
+
+
+/* =========================================================
+   11. TABS
+   ========================================================= */
+
+.tab-container {
+    display: flex;
+
+    width: 100%;
+
+    margin-bottom: 24px;
+    padding: 4px;
+
+    background: var(--border-color);
+
+    border-radius: var(--radius-md);
+}
+
+.tab-btn {
+    flex: 1;
+
+    padding: 10px;
+
+    background: transparent;
+    color: var(--text-muted);
+
+    border-radius: var(--radius-sm);
+
+    font-size: 0.9rem;
+    font-weight: 600;
+
+    cursor: pointer;
+
+    touch-action: manipulation;
+
+    transition:
+        background-color var(--transition-fast),
+        color var(--transition-fast),
+        box-shadow var(--transition-fast);
+}
+
+.tab-btn.active {
+    background: var(--white);
+    color: var(--text-dark);
+
+    box-shadow: var(--shadow-active);
+}
+
+
+/* =========================================================
+   12. TAB CONTENT
+   ========================================================= */
+
+.tab-content {
+    display: none;
+
+    animation:
+        slideIn var(--transition-page);
+}
+
+.tab-content.active {
+    display: block;
+}
+
+
+/* =========================================================
+   13. FORM
+   ========================================================= */
+
+.form-group {
+    width: 100%;
+
+    margin-bottom: 16px;
+}
+
+.form-group label {
+    display: block;
+
+    margin-bottom: 6px;
+
+    color: var(--text-muted);
+
+    font-size: 0.85rem;
+    font-weight: 500;
+
+    line-height: 1.4;
+}
+
+
+/* =========================================================
+   14. INPUT WRAPPER
+   ========================================================= */
+
+.input-wrapper {
+    position: relative;
+
+    display: flex;
+    align-items: center;
+
+    width: 100%;
+    min-height: 52px;
+
+    padding: 0;
+
+    background: var(--white);
+
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-md);
+
+    transition:
+        border-color var(--transition-fast),
+        box-shadow var(--transition-fast);
+}
+
+.input-wrapper:focus-within {
+    border-color: var(--border-focus);
+
+    box-shadow:
+        0 0 0 3px rgba(59, 130, 246, 0.08);
+}
+
+
+/* =========================================================
+   15. TEXT / NUMBER INPUT
+   ========================================================= */
+
+.input-wrapper input {
+    flex: 1;
+
+    width: 100%;
+    min-width: 0;
+
+    height: 50px;
+
+    padding: 14px 16px;
+
+    background: transparent;
+    color: var(--text-dark);
+
+    border: 0;
+    outline: 0;
+
+    font-size: 1rem;
+    font-weight: 500;
+
+    appearance: none;
+    -webkit-appearance: none;
+}
+
+.input-wrapper input::placeholder {
+    color: #94a3b8;
+}
+
+
+/* Remove number spinner */
+
+.input-wrapper input[type="number"]::-webkit-inner-spin-button,
+.input-wrapper input[type="number"]::-webkit-outer-spin-button {
+    margin: 0;
+
+    -webkit-appearance: none;
+}
+
+.input-wrapper input[type="number"] {
+    -moz-appearance: textfield;
+}
+
+
+/* =========================================================
+   16. UNIT
+   ========================================================= */
+
+.input-wrapper .unit {
+    display: flex;
+    align-items: center;
+
+    flex: 0 0 auto;
+
+    min-height: 26px;
+
+    padding:
+        0
+        0
+        0
+        10px;
+
+    margin-right: 4px;
+
+    color: var(--text-dark);
+
+    border-left: 1px solid var(--border-color);
+
+    font-size: 0.9rem;
+    font-weight: 500;
+
+    line-height: 1.2;
+
+    white-space: nowrap;
+
+    pointer-events: none;
+}
+
+.input-wrapper .dropdown-icon {
+    flex: 0 0 auto;
+
+    margin-right: 4px;
+
+    color: var(--text-muted);
+
+    font-size: 1.2rem;
+
+    pointer-events: none;
+}
+
+
+/* =========================================================
+   17. PRIMARY BUTTON
+   ========================================================= */
+
+.btn-primary {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 100%;
+
+    min-height: 52px;
+
+    margin:
+        10px
+        0
+        24px;
+
+    padding: 14px 16px;
+
+    background: var(--text-dark);
+    color: var(--white);
+
+    border-radius: 14px;
+
+    font-size: 1rem;
+    font-weight: 600;
+
+    cursor: pointer;
+
+    touch-action: manipulation;
+
+    transition:
+        transform var(--transition-fast),
+        opacity var(--transition-fast);
+}
+
+.btn-primary:active {
+    transform: translateY(2px);
+}
+
+.btn-primary:disabled {
+    opacity: 0.55;
+
+    cursor: not-allowed;
+}
+
+
+/* Fuel */
+
+.fuel-btn {
+    background: var(--c-fuel);
+}
+
+.fuel-btn:hover {
+    opacity: 0.92;
+}
+
+
+/* Currency */
+
+.currency-btn {
+    background: var(--c-curr);
+}
+
+.currency-btn:hover {
+    opacity: 0.92;
+}
+
+
+/* =========================================================
+   18. RESULT CARD
+   ========================================================= */
+
+.result-card {
+    width: 100%;
+
+    margin-bottom: 20px;
+    padding: 20px;
+
+    background: #f1f5f9;
+
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-lg);
+
+    text-align: left;
+}
+
+.result-label {
+    color: var(--text-muted);
+
+    font-size: 0.85rem;
+    font-weight: 500;
+
+    line-height: 1.4;
+}
+
+.result-value {
+    margin-top: 4px;
+
+    color: var(--text-dark);
+
+    font-size: 1.8rem;
+    font-weight: 700;
+
+    line-height: 1.2;
+
+    overflow-wrap: anywhere;
+}
+
+.fuel-text {
+    color: var(--c-fuel);
+}
+
+.mt-15 {
+    margin-top: 15px;
+}
+
+
+/* =========================================================
+   19. TIP CARD
+   ========================================================= */
+
+.tip-card {
+    display: flex;
+    align-items: flex-start;
+
+    width: 100%;
+
+    gap: 12px;
+
+    padding: 16px;
+
+    background: var(--white);
+
+    border-radius: 14px;
+
+    box-shadow: var(--shadow-soft);
+}
+
+.tip-icon {
+    flex: 0 0 auto;
+
+    color: var(--c-time);
+
+    font-size: 1.5rem;
+
+    pointer-events: none;
+}
+
+.tip-card p {
+    color: var(--text-muted);
+
+    font-size: 0.85rem;
+
+    line-height: 1.5;
+}
+
+.currency-source {
+    background: #fffaf0;
+}
+
+.currency-source-content {
+    min-width: 0;
+}
+
+.currency-source-content h3 {
+    margin: 0 0 8px;
+    color: var(--text-dark);
+    font-size: 0.95rem;
+    line-height: 1.25;
+}
+
+
+/* =========================================================
+   20. ABOUT CARD
+   ========================================================= */
+
+.about-card {
+    display: flex;
+    flex-direction: column;
+
+    width: 100%;
+
+    gap: 8px;
+
+    padding: 16px;
+
+    background: var(--white);
+
+    border-radius: 14px;
+
+    box-shadow: var(--shadow-soft);
+}
+
+.about-card h3 {
+    color: var(--text-dark);
+
+    font-size: 1rem;
+    font-weight: 600;
+}
+
+.about-card p {
+    color: var(--text-muted);
+
+    font-size: 0.85rem;
+
+    line-height: 1.5;
+}
+
+
+/* =========================================================
+   21. CURRENCY CONVERTER
+   ========================================================= */
+
+.currency-converter {
+    position: relative;
+
+    width: 100%;
+}
+
+
+/* =========================================================
+   22. CURRENCY SELECT
+   ========================================================= */
+
+.currency-select-wrapper {
+    position: relative;
+
+    display: flex;
+    align-items: center;
+
+    width: 100%;
+    min-height: 52px;
+
+    background: var(--white);
+
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-md);
+
+    transition:
+        border-color var(--transition-fast),
+        box-shadow var(--transition-fast);
+}
+
+.currency-select-wrapper:focus-within {
+    border-color: var(--border-focus);
+
+    box-shadow:
+        0 0 0 3px rgba(59, 130, 246, 0.08);
+}
+
+.currency-select {
+    display: block;
+
+    width: 100%;
+    min-width: 0;
+
+    height: 50px;
+
+    padding:
+        14px
+        42px
+        14px
+        16px;
+
+    background: transparent;
+    color: var(--text-dark);
+
+    border: 0;
+    outline: 0;
+
+    border-radius: var(--radius-md);
+
+    font-size: 0.95rem;
+    font-weight: 500;
+
+    cursor: pointer;
+
+    appearance: none;
+    -webkit-appearance: none;
+
+    touch-action: manipulation;
+}
+
+.currency-select:focus {
+    outline: 0;
+}
+
+
+/* =========================================================
+   23. CURRENCY SWAP
+   ========================================================= */
+
+.currency-swap-wrapper {
+    position: relative;
+    z-index: 20;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    width: 100%;
+
+    height: 0;
+
+    pointer-events: none;
+}
+
+.currency-swap {
+    position: relative;
+
+    z-index: 21;
+
+    width: 44px;
+    height: 44px;
+
+    flex: 0 0 44px;
+
+    margin-top: -5px;
+
+    padding: 0;
+
+    background: var(--white);
+    color: var(--c-curr);
+
+    border: 1px solid var(--border-color);
+    border-radius: 50%;
+
+    box-shadow:
+        0 3px 10px rgba(0, 0, 0, 0.08);
+
+    font-size: 1.25rem;
+
+    cursor: pointer;
+
+    pointer-events: auto;
+
+    touch-action: manipulation;
+
+    transition:
+        background-color var(--transition-fast),
+        transform var(--transition-fast),
+        box-shadow var(--transition-fast);
+}
+
+.currency-swap i {
+    pointer-events: none;
+}
+
+.currency-swap:hover {
+    background: var(--bg-curr);
+
+    box-shadow:
+        0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.currency-swap:active {
+    transform: scale(0.94);
+}
+
+
+/* =========================================================
+   24. CURRENCY STATUS
+   ========================================================= */
+
+.currency-status {
+    min-height: 20px;
+
+    margin:
+        -14px
+        0
+        12px;
+
+    color: var(--text-muted);
+
+    font-size: 0.78rem;
+
+    line-height: 1.4;
+
+    text-align: center;
+}
+
+
+/* =========================================================
+   25. CURRENCY RESULT
+   ========================================================= */
+
+.currency-result-card {
+    margin-top: 4px;
+}
+
+.currency-text {
+    color: var(--c-curr);
+}
+
+.currency-rate {
+    margin-top: 4px;
+
+    color: var(--text-dark);
+
+    font-size: 0.95rem;
+    font-weight: 600;
+
+    line-height: 1.4;
+
+    overflow-wrap: anywhere;
+}
+
+
+/* =========================================================
+   26. CURRENCY INFORMATION
+   ========================================================= */
+
+.currency-info {
+    margin-top: 20px;
+}
+
+
+/* =========================================================
+   27. SMALL DEVICES
+   ========================================================= */
+
+@media (max-width: 360px) {
+
+    .container {
+        padding:
+            20px
+            16px;
+    }
+
+    .menu-grid {
+        gap: 12px;
+    }
+
+    .menu-card {
+        min-height: 124px;
+
+        padding:
+            16px
+            14px;
+    }
+
+    .icon-wrapper {
+        width: 44px;
+        height: 44px;
+
+        margin-bottom: 13px;
+    }
+
+    .icon-wrapper i {
+        font-size: 22px;
+    }
+
+    .menu-card span {
+        font-size: 0.84rem;
+    }
+
+    .header-titles h1 {
+        font-size: 1.12rem;
+    }
+
+    .header-titles p {
+        font-size: 0.78rem;
+    }
+
+    .result-value {
+        font-size: 1.6rem;
+    }
+
+    .input-wrapper select {
+        font-size: 0.88rem;
+
+        padding-left: 14px;
+        padding-right: 36px;
+    }
+}
+
+
+/* =========================================================
+   28. LARGER SCREENS
+   ========================================================= */
+
+@media (min-width: 481px) {
+
+    body {
+        padding: 20px 0;
+    }
+
+    .container {
+        min-height:
+            calc(100vh - 40px);
+
+        border-radius: var(--radius-xl);
+    }
+}
+
+/* =========================================================
+   TRIP BUDGET
+   ========================================================= */
+
+.budget-calculator {
+    width: 100%;
+}
+
+.budget-btn {
+    background-color: var(--c-budg);
+}
+
+.budget-btn:hover {
+    opacity: 0.92;
+}
+
+.budget-text {
+    color: var(--c-budg);
+}
+
+.budget-result-card {
+    margin-top: 4px;
+}
+
+.budget-info {
+    margin-top: 20px;
+}
+
+/* =========================================================
+   SPLIT COST
+   ========================================================= */
+
+.split-calculator {
+    width: 100%;
+}
+
+.split-btn {
+    background-color: var(--c-splt);
+}
+
+.split-btn:hover {
+    opacity: 0.92;
+}
+
+.split-text {
+    color: var(--c-splt);
+}
+
+.split-result-card {
+    margin-top: 4px;
+}
+
+.split-info {
+    margin-top: 20px;
+}
+
+.currency-select-wrapper {
+    position: relative;
+
+    display: flex;
+    align-items: center;
+
+    width: 100%;
+    min-height: 52px;
+
+    background: var(--white);
+
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-md);
+
+    transition:
+        border-color var(--transition-fast),
+        box-shadow var(--transition-fast);
+}
+
+.currency-select-wrapper:focus-within {
+    border-color: #94a3b8;
+
+    box-shadow:
+        0 0 0 3px rgba(59, 130, 246, 0.08);
+}
+
+.currency-select-wrapper select {
+    width: 100%;
+    min-width: 0;
+
+    padding: 14px 16px;
+
+    background: transparent;
+    color: var(--text-dark);
+
+    border: 0;
+    outline: 0;
+
+    font-size: 0.95rem;
+    font-weight: 500;
+
+    cursor: pointer;
+
+    appearance: none;
+    -webkit-appearance: none;
+}
+
+/* =========================================================
+   SETTINGS MODAL
+   ========================================================= */
+
+.modal-backdrop[hidden] {
+    display: none;
+}
+
+.modal-backdrop {
+    position: fixed;
+    inset: 0;
+    z-index: 1000;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    padding: 16px;
+    background: rgba(15, 23, 42, 0.38);
+    backdrop-filter: blur(3px);
+}
+
+.settings-modal {
+    width: min(100%, 480px);
+    background: var(--white);
+    border-radius: 20px;
+    box-shadow: 0 18px 50px rgba(15, 23, 42, 0.18);
+    overflow: hidden;
+    animation: settingsUp 0.2s ease-out;
+}
+
+@keyframes settingsUp {
+    from { opacity: 0; transform: translateY(14px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.settings-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 16px 18px;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.settings-header h2 {
+    font-size: 1.05rem;
+}
+
+.settings-body {
+    padding: 18px;
+}
+
+.settings-action {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    width: 100%;
+    padding: 14px;
+    background: #f8fafc;
+    color: var(--text-dark);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    cursor: pointer;
+    text-align: left;
+}
+
+.settings-action i {
+    color: var(--c-curr);
+    font-size: 1.2rem;
+}
+
+.settings-note {
+    margin-top: 14px;
+    color: var(--text-muted);
+    font-size: 0.78rem;
+    line-height: 1.5;
+}
+
+.settings-about {
+    margin-top: 22px;
+    padding-top: 20px;
+    border-top: 1px solid var(--border-color);
+    text-align: center;
+}
+
+.settings-about h3 {
+    margin: 0 0 16px;
+    font-size: 0.86rem;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+}
+
+.settings-logo {
+    display: block;
+    width: min(100%, 250px);
+    height: auto;
+    margin: 0 auto 16px;
+}
+
+.settings-about h4 {
+    margin: 0 0 8px;
+    font-size: 1rem;
+    color: var(--text-dark);
+}
+
+.settings-about p {
+    margin: 0 auto 9px;
+    max-width: 390px;
+    color: var(--text-muted);
+    font-size: 0.78rem;
+    line-height: 1.5;
+}
+
+.settings-version {
+    display: inline-block;
+    margin-top: 4px;
+    color: var(--text-muted);
+    font-size: 0.72rem;
+}
+
+@media (min-width: 481px) {
+    .modal-backdrop {
+        align-items: center;
+    }
+}
+
+
+/* =========================================================
+   AD SLOT
+   ========================================================= */
+
+.ad-slot {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 100%;
+    min-height: 60px;
+    margin: 20px 0 4px;
+
+    background: #f1f5f9;
+    border: 1px dashed #cbd5e1;
+    border-radius: var(--radius-md);
+
+    color: #94a3b8;
+    font-size: 0.7rem;
+    font-weight: 500;
+    letter-spacing: 0.2px;
+
+    overflow: hidden;
+}
+
+/*
+   Banner placement contract:
+   - Always visible on the active page without requiring scroll.
+   - Fixed to the viewport.
+   - Sits above any future bottom navigation by --bottom-nav-height.
+   - The active page gets bottom padding so content is never covered.
+*/
+.ad-slot-banner.ad-disabled {
+    display: none;
+}
+
+.ad-slot-banner {
+    position: fixed;
+    left: 50%;
+    bottom: calc(var(--bottom-nav-height) + env(safe-area-inset-bottom, 0px) + var(--banner-gap));
+    z-index: 900;
+
+    width: min(calc(100% - 40px), 440px);
+    min-height: var(--banner-height);
+    margin: 0;
+
+    transform: translateX(-50%);
+}
+
+.ad-slot span {
+    pointer-events: none;
+}
+
+.ad-slot.is-loaded {
+    min-height: 50px;
+    border-style: solid;
+    border-color: transparent;
+    background: transparent;
+}
+
+.ad-slot.is-loaded span {
+    display: none;
+}
+
+@media (max-width: 360px) {
+    .ad-slot {
+        min-height: 50px;
+        margin-top: 16px;
+    }
+
+    :root {
+        --banner-height: 50px;
+    }
+
+    .ad-slot-banner {
+        width: calc(100% - 24px);
+    }
+}
+
+
+/* Currency source disclosure */
+.source-name {
+    font-weight: 700;
+    color: var(--text-dark) !important;
+}
+
+.source-type {
+    margin-top: 2px !important;
+    color: var(--text-muted);
+    font-size: 0.84rem;
+}
+
+.source-updated-label {
+    margin-top: 12px !important;
+    font-size: 0.75rem !important;
+    font-weight: 700;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+}
+
+.source-updated {
+    margin-top: 2px !important;
+    font-weight: 600;
+    color: var(--text-dark) !important;
+}
+
+.source-note {
+    margin-top: 10px !important;
+    font-size: 0.75rem !important;
+    line-height: 1.5;
+    color: var(--text-muted);
+}
+
+/* Tool explanation cards */
+.tool-explanation {
+    margin-top: 18px;
+}
+
+.tool-explanation h3 {
+    margin-bottom: 8px;
+}
+
+.tool-explanation p {
+    line-height: 1.65;
+}
+
+/* =========================================================
+   HOME VISUAL REFRESH — Bali travel identity
+   ========================================================= */
+.home-hero-header {
+    margin: -24px -20px 18px;
+}
+
+.home-hero {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+    border-radius: 0 0 24px 24px;
+    background: #f8f4eb;
+}
+
+.home-hero-image {
+    display: block;
+    width: 100%;
+    height: auto;
+}
+
+.home-settings {
+    position: absolute;
+    top: 14px;
+    right: 14px;
+    z-index: 2;
+    width: 40px;
+    height: 40px;
+    color: var(--text-dark);
+    background: rgba(255,255,255,.76);
+    border: 1px solid rgba(15,23,42,.08);
+    border-radius: 50%;
+    backdrop-filter: blur(5px);
+}
+
+.home-settings i {
+    font-size: 1.35rem;
+}
+
+.menu-grid {
+    gap: 14px;
+}
+
+.menu-card {
+    min-height: 126px;
+    padding: 18px 16px;
+    border: 1px solid rgba(255,255,255,.78);
+    box-shadow: 0 5px 16px rgba(15,23,42,.045);
+}
+
+.menu-card:nth-child(1) { background: linear-gradient(145deg, #fff0f0, var(--bg-fuel)); }
+.menu-card:nth-child(2) { background: linear-gradient(145deg, #eef8ff, var(--bg-curr)); }
+.menu-card:nth-child(3) { background: linear-gradient(145deg, #effbf4, var(--bg-budg)); }
+.menu-card:nth-child(4) { background: linear-gradient(145deg, #fbf3ff, var(--bg-splt)); }
+.menu-card:nth-child(5) { background: linear-gradient(145deg, #fff9e8, var(--bg-time)); }
+.menu-card:nth-child(6) { background: linear-gradient(145deg, #edfffc, var(--bg-dist)); }
+
+.menu-card .icon-wrapper {
+    width: 52px;
+    height: 52px;
+    margin-bottom: 12px;
+    background: rgba(255,255,255,.48);
+    border: 1px solid rgba(255,255,255,.38);
+}
+
+.menu-card span {
+    font-size: .92rem;
+    font-weight: 650;
+}
+
+.footer-art {
+    margin: 18px -20px 0;
+    padding: 0;
+    overflow: hidden;
+    border-radius: 24px 24px 0 0;
+}
+
+.home-footer-image {
+    display: block;
+    width: 100%;
+    height: auto;
+}
+
+@media (max-width: 360px) {
+    .home-hero-header { margin-left: -12px; margin-right: -12px; }
+    .footer-art { margin-left: -12px; margin-right: -12px; }
+    .menu-card { min-height: 120px; }
+}
+
+/* =========================================================
+   HOME CARD ICON REFINEMENT
+   Large centered icons — no white icon boxes
+   ========================================================= */
+.menu-card {
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 18px 14px;
+}
+
+.menu-card .icon-wrapper {
+    width: auto;
+    height: auto;
+    margin: 0 0 18px;
+    padding: 0;
+    background: transparent;
+    border: 0;
+    border-radius: 0;
+}
+
+.menu-card .icon-wrapper i {
+    font-size: 56px;
+    line-height: 1;
+}
+
+.menu-card span {
+    width: 100%;
+    text-align: center;
+    font-size: 1.02rem;
+    font-weight: 650;
+    line-height: 1.25;
+}
+
+@media (max-width: 360px) {
+    .menu-card .icon-wrapper i {
+        font-size: 52px;
+    }
+
+    .menu-card .icon-wrapper {
+        margin-bottom: 16px;
+    }
+
+    .menu-card span {
+        font-size: .96rem;
+    }
+}
+
+/* =========================================================
+   HOME HERO COPY — responsive SEO text overlay
+   ========================================================= */
+.home-hero-copy {
+    position: absolute;
+    z-index: 3;
+    left: 50%;
+    top: 43%;
+    width: min(92%, 680px);
+    transform: translateX(-50%);
+    text-align: center;
+    color: #17324d;
+    pointer-events: none;
+}
+
+.home-hero-heading {
+    margin: 0;
+    padding: 0;
+    font: inherit;
+    text-align: center;
+}
+
+.home-hero-title,
+.home-hero-name {
+    display: block;
+    white-space: nowrap;
+}
+
+/* Brand name: intentionally dominant, like the target composition. */
+.home-hero-title {
+    font-size: clamp(2.5rem, 9vw, 4rem);
+    line-height: .9;
+    font-weight: 700;
+    letter-spacing: .10em;
+}
+
+.home-hero-name {
+    margin-top: clamp(5px, 1.1vw, 9px);
+    font-size: clamp(1.45rem, 5vw, 2.15rem);
+    line-height: 1;
+    font-weight: 700;
+    letter-spacing: .055em;
+}
+
+.home-hero-tagline {
+    margin: clamp(7px, 1.2vw, 10px) 0 0;
+    font-size: clamp(.9rem, 3vw, 1.2rem);
+    line-height: 1.15;
+    font-weight: 500;
+    letter-spacing: 0;
+    white-space: nowrap;
+}
+
+.home-footer-image {
+    width: 100%;
+    height: auto;
+}
+
+/* Compact Android screens: preserve the same hierarchy without overflow. */
+@media (max-width: 420px) {
+    .home-hero-copy {
+        top: 44%;
+        width: 94%;
+    }
+
+    .home-hero-title {
+        font-size: clamp(2.25rem, 10vw, 2.8rem);
+        letter-spacing: .075em;
+    }
+
+    .home-hero-name {
+        margin-top: 5px;
+        font-size: clamp(1.18rem, 5.7vw, 1.5rem);
+        letter-spacing: .045em;
+    }
+
+    .home-hero-tagline {
+        margin-top: 6px;
+        font-size: clamp(.78rem, 3.5vw, .95rem);
+    }
+}
+

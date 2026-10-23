@@ -1,0 +1,6 @@
+{
+  "name": "Bali Travel Calculator & Authentic Explorer",
+  "description": "Created by PENGGILAS (Think Right, Know Why). Smart travel calculator tools for Bali travellers featuring real-time currency conversion, automatic trip budget estimator, scooter route & fuel calculator, group cost split, and curated authentic Balinese local recommendations.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

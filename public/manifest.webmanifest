@@ -1,0 +1,24 @@
+{
+  "name": "Bali Travel Calculator — By PENGGILAS",
+  "short_name": "Bali Travel",
+  "description": "Smart travel calculator tools and authentic explorer for Bali travellers.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#FAF7F2",
+  "theme_color": "#8B2E18",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "/images/bali-app-icon.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/images/app-icon.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}

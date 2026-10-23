@@ -1,0 +1,1728 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover"
+    >
+
+    <title>Bali Travel Calculator</title>
+
+
+    <!-- =====================================================
+         FONTS
+         ===================================================== -->
+
+    <link
+        rel="preconnect"
+        href="https://fonts.googleapis.com"
+    >
+
+    <link
+        rel="preconnect"
+        href="https://fonts.gstatic.com"
+        crossorigin
+    >
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap"
+        rel="stylesheet"
+    >
+
+
+    <!-- =====================================================
+         ICONS
+         ===================================================== -->
+
+    <link
+        href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css"
+        rel="stylesheet"
+    >
+
+
+    <!-- =====================================================
+         MAIN CSS
+         ===================================================== -->
+
+    <link
+        rel="stylesheet"
+        href="style.css?v=20261009-01"
+    >
+
+</head>
+
+
+<body>
+
+<div id="app">
+
+
+    <!-- =====================================================
+         PAGE 1 — HOME
+         ===================================================== -->
+
+    <main
+        id="page-home"
+        class="app-page active"
+    >
+
+        <div class="container">
+
+            <header class="app-header home-hero-header">
+
+                <div class="home-hero" aria-label="Bali Travel Calculator">
+                    <img
+                        src="home-header-bali.webp?v=20261009-01"
+                        alt="Bali tropical landscape with Balinese temple and palm trees"
+                        class="home-hero-image"
+                    >
+
+                    <div class="home-hero-copy">
+                        <h1 class="home-hero-heading">
+                            <span class="home-hero-title">BALI</span>
+                            <span class="home-hero-name">TRAVEL CALCULATOR</span>
+                        </h1>
+                        <p class="home-hero-tagline">Simple tools for your Bali trip.</p>
+                    </div>
+
+                    <button
+                        id="btn-settings"
+                        class="btn-icon home-settings"
+                        type="button"
+                        aria-label="Open settings"
+                    >
+                        <i
+                            class="ri-settings-3-line"
+                            aria-hidden="true"
+                        ></i>
+                    </button>
+                </div>
+
+            </header>
+
+
+            <!-- ================= MENU ================= -->
+
+            <section
+                class="menu-grid"
+                aria-label="Travel calculators"
+            >
+
+
+                <!-- Fuel Cost -->
+
+                <button
+                    class="menu-card"
+                    type="button"
+                    data-target="page-fuel"
+                >
+
+                    <div class="icon-wrapper fuel-bg">
+
+                        <i
+                            class="ri-gas-station-fill fuel-icon"
+                            aria-hidden="true"
+                        ></i>
+
+                    </div>
+
+                    <span>
+                        Fuel Cost
+                    </span>
+
+                </button>
+
+
+                <!-- Currency -->
+
+                <button
+                    class="menu-card"
+                    type="button"
+                    data-target="page-currency"
+                >
+
+                    <div class="icon-wrapper currency-bg">
+
+                        <i
+                            class="ri-exchange-dollar-fill currency-icon"
+                            aria-hidden="true"
+                        ></i>
+
+                    </div>
+
+                    <span>
+                        Currency<br>
+                        Converter
+                    </span>
+
+                </button>
+
+
+                <!-- Trip Budget -->
+
+                <button
+                    class="menu-card"
+                    type="button"
+                    data-target="page-budget"
+                >
+
+                    <div class="icon-wrapper budget-bg">
+
+                        <i
+                            class="ri-wallet-3-fill budget-icon"
+                            aria-hidden="true"
+                        ></i>
+
+                    </div>
+
+                    <span>
+                        Trip Budget
+                    </span>
+
+                </button>
+
+
+                <!-- Split Cost -->
+
+                <button
+                    class="menu-card"
+                    type="button"
+                    data-target="page-split"
+                >
+
+                    <div class="icon-wrapper split-bg">
+
+                        <i
+                            class="ri-team-fill split-icon"
+                            aria-hidden="true"
+                        ></i>
+
+                    </div>
+
+                    <span>
+                        Split Cost
+                    </span>
+
+                </button>
+
+
+                <!-- Travel Time -->
+
+                <button
+                    class="menu-card"
+                    type="button"
+                    data-target="page-travel-time"
+                >
+
+                    <div class="icon-wrapper time-bg">
+
+                        <i
+                            class="ri-time-fill time-icon"
+                            aria-hidden="true"
+                        ></i>
+
+                    </div>
+
+                    <span>
+                        Travel Time
+                    </span>
+
+                </button>
+
+
+                <!-- Distance & Speed -->
+
+                <button
+                    class="menu-card"
+                    type="button"
+                    data-target="page-distance-speed"
+                >
+
+                    <div class="icon-wrapper distance-bg">
+
+                        <i
+                            class="ri-map-pin-time-fill distance-icon"
+                            aria-hidden="true"
+                        ></i>
+
+                    </div>
+
+                    <span>
+                        Distance<br>
+                        &amp; Speed
+                    </span>
+
+                </button>
+
+            </section>
+
+
+            <!-- ================= FOOTER ================= -->
+
+            <footer class="footer-art">
+                <img
+                    src="home-footer-bali.webp?v=20261009-01"
+                    alt="Bali coastal landscape with Good Trips Happier Days"
+                    class="home-footer-image"
+                >
+            </footer>
+        </div>
+
+
+        <div class="ad-slot ad-slot-banner" data-ad-slot="BANNER_AD" data-ad-type="banner" aria-label="Advertisement">
+            <span>Advertisement</span>
+        </div>
+
+    </main>
+
+
+
+    <!-- =====================================================
+         PAGE 2 — FUEL COST
+         ===================================================== -->
+
+    <main
+        id="page-fuel"
+        class="app-page"
+    >
+
+        <div class="container">
+
+            <header class="sub-header">
+
+                <button
+                    class="btn-icon btn-back"
+                    type="button"
+                    data-target="page-home"
+                    aria-label="Back to home"
+                >
+
+                    <i
+                        class="ri-arrow-left-s-line"
+                        aria-hidden="true"
+                    ></i>
+
+                </button>
+
+
+                <div class="sub-header-title">
+
+                    <i
+                        class="ri-gas-station-fill fuel-icon"
+                        aria-hidden="true"
+                    ></i>
+
+                    <h2>
+                        Fuel Cost
+                    </h2>
+
+                </div>
+
+
+                <div
+                    class="header-spacer"
+                    aria-hidden="true"
+                ></div>
+
+            </header>
+
+
+            <!-- ================= CALCULATE ================= -->
+
+            <section
+                id="fuel-calc"
+                class="tab-content active"
+            >
+
+                <div class="form-group">
+
+                    <label for="input-distance">
+                        Distance
+                    </label>
+
+                    <div class="input-wrapper">
+
+                        <input
+                            id="input-distance"
+                            type="number"
+                            placeholder="85"
+                            inputmode="decimal"
+                            min="0"
+                            step="any"
+                        >
+
+                        <span class="unit">
+                            km
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="input-consumption">
+                        Fuel consumption
+                    </label>
+
+                    <div class="input-wrapper">
+
+                        <input
+                            id="input-consumption"
+                            type="number"
+                            placeholder="35"
+                            inputmode="decimal"
+                            min="0"
+                            step="any"
+                        >
+
+                        <span class="unit">
+                            km/L
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="input-price">
+                        Fuel price
+                    </label>
+
+                    <div class="input-wrapper">
+
+                        <input
+                            id="input-price"
+                            type="number"
+                            placeholder="13000"
+                            inputmode="numeric"
+                            min="0"
+                            step="1"
+                        >
+
+                        <span class="unit">
+                            IDR/L
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+                <button
+                    id="btn-calc-fuel"
+                    class="btn-primary fuel-btn"
+                    type="button"
+                >
+                    Calculate
+                </button>
+
+
+                <!-- RESULT -->
+
+                <section
+                    class="result-card"
+                    aria-live="polite"
+                >
+
+                    <p class="result-label">
+                        Fuel required
+                    </p>
+
+                    <h3
+                        id="res-fuel-req"
+                        class="result-value"
+                    >
+                        —
+                    </h3>
+
+
+                    <p class="result-label mt-15">
+                        Estimated cost
+                    </p>
+
+                    <h3
+                        id="res-fuel-cost"
+                        class="result-value fuel-text"
+                    >
+                        —
+                    </h3>
+
+                </section>
+
+
+                <!-- TIP -->
+
+                <aside class="tip-card">
+
+                    <i
+                        class="ri-lightbulb-flash-line tip-icon"
+                        aria-hidden="true"
+                    ></i>
+
+                    <p>
+                        <strong>Tip:</strong>
+                        Typical scooter in Bali 30–50 km/L
+                    </p>
+
+                </aside>
+
+            </section>
+
+
+            <!-- ================= ABOUT ================= -->
+
+            <section class="about-card tool-explanation" aria-labelledby="fuel-about-title">
+                <h3 id="fuel-about-title">About Fuel Cost</h3>
+                <p>Estimate fuel usage and travel cost based on distance, fuel efficiency, and fuel price. Useful for planning scooter or car trips around Bali.</p>
+            </section>
+
+        </div>
+
+
+        <div class="ad-slot ad-slot-banner" data-ad-slot="BANNER_AD" data-ad-type="banner" aria-label="Advertisement">
+            <span>Advertisement</span>
+        </div>
+
+    </main>
+
+
+
+    <!-- =====================================================
+         PAGE 3 — CURRENCY CONVERTER
+         ===================================================== -->
+
+    <main
+        id="page-currency"
+        class="app-page"
+    >
+
+        <div class="container">
+
+            <header class="sub-header">
+
+
+                <!-- BACK -->
+
+                <button
+                    class="btn-icon btn-back"
+                    type="button"
+                    data-target="page-home"
+                    aria-label="Back to home"
+                >
+
+                    <i
+                        class="ri-arrow-left-s-line"
+                        aria-hidden="true"
+                    ></i>
+
+                </button>
+
+
+                <!-- TITLE -->
+
+                <div class="sub-header-title">
+
+                    <i
+                        class="ri-exchange-dollar-fill currency-icon"
+                        aria-hidden="true"
+                    ></i>
+
+                    <h2>
+                        Currency Converter
+                    </h2>
+
+                </div>
+
+
+                <div
+                    class="header-spacer"
+                    aria-hidden="true"
+                ></div>
+
+            </header>
+
+
+            <!-- =================================================
+                 CURRENCY CONVERTER
+                 ================================================= -->
+
+            <section class="currency-converter">
+
+
+                <!-- ================= AMOUNT ================= -->
+
+                <div class="form-group">
+
+                    <label for="currency-amount">
+                        Amount
+                    </label>
+
+                    <div class="input-wrapper">
+
+                        <input
+                            id="currency-amount"
+                            type="number"
+                            inputmode="decimal"
+                            min="0"
+                            step="any"
+                            placeholder="100"
+                            autocomplete="off"
+                        >
+
+                    </div>
+
+                </div>
+
+
+                <!-- ================= FROM ================= -->
+
+                <div class="form-group">
+
+                    <label for="currency-from">
+                        From
+                    </label>
+
+                    <div class="currency-select-wrapper">
+
+                        <select
+                            id="currency-from"
+                            class="currency-select"
+                            aria-label="From currency"
+                        >
+
+                            <option value="IDR" selected>
+                                IDR — Indonesian Rupiah
+                            </option>
+
+                            <option value="USD">
+                                USD — US Dollar
+                            </option>
+
+                            <option value="EUR">
+                                EUR — Euro
+                            </option>
+
+                            <option value="GBP">
+                                GBP — British Pound
+                            </option>
+
+                            <option value="AUD">
+                                AUD — Australian Dollar
+                            </option>
+
+                            <option value="SGD">
+                                SGD — Singapore Dollar
+                            </option>
+
+                            <option value="MYR">
+                                MYR — Malaysian Ringgit
+                            </option>
+
+                            <option value="JPY">
+                                JPY — Japanese Yen
+                            </option>
+
+                            <option value="CNY">
+                                CNY — Chinese Yuan
+                            </option>
+
+                            <option value="KRW">
+                                KRW — South Korean Won
+                            </option>
+
+                            <option value="THB">
+                                THB — Thai Baht
+                            </option>
+
+                        </select>
+
+                    </div>
+
+                </div>
+
+
+                <!-- ================= SWAP ================= -->
+
+                <div class="currency-swap-wrapper">
+
+                    <button
+                        id="currency-swap"
+                        class="currency-swap"
+                        type="button"
+                        aria-label="Swap currencies"
+                    >
+
+                        <i
+                            class="ri-arrow-up-down-line"
+                            aria-hidden="true"
+                        ></i>
+
+                    </button>
+
+                </div>
+
+
+                <!-- ================= TO ================= -->
+
+                <div class="form-group">
+
+                    <label for="currency-to">
+                        To
+                    </label>
+
+                    <div class="currency-select-wrapper">
+
+                        <select
+                            id="currency-to"
+                            class="currency-select"
+                            aria-label="To currency"
+                        >
+
+                            <option value="IDR">
+                                IDR — Indonesian Rupiah
+                            </option>
+
+                            <option value="USD" selected>
+                                USD — US Dollar
+                            </option>
+
+                            <option value="EUR">
+                                EUR — Euro
+                            </option>
+
+                            <option value="GBP">
+                                GBP — British Pound
+                            </option>
+
+                            <option value="AUD">
+                                AUD — Australian Dollar
+                            </option>
+
+                            <option value="SGD">
+                                SGD — Singapore Dollar
+                            </option>
+
+                            <option value="MYR">
+                                MYR — Malaysian Ringgit
+                            </option>
+
+                            <option value="JPY">
+                                JPY — Japanese Yen
+                            </option>
+
+                            <option value="CNY">
+                                CNY — Chinese Yuan
+                            </option>
+
+                            <option value="KRW">
+                                KRW — South Korean Won
+                            </option>
+
+                            <option value="THB">
+                                THB — Thai Baht
+                            </option>
+
+                        </select>
+
+                    </div>
+
+                </div>
+
+
+                <!-- ================= CONVERT ================= -->
+
+                <button
+                    id="btn-calc-currency"
+                    class="btn-primary currency-btn"
+                    type="button"
+                >
+                    Convert
+                </button>
+
+
+                <!-- ================= STATUS ================= -->
+
+                <p
+                    id="currency-status"
+                    class="currency-status"
+                    aria-live="polite"
+                ></p>
+
+
+                <!-- ================= RESULT ================= -->
+
+                <section
+                    class="result-card currency-result-card"
+                    aria-live="polite"
+                >
+
+                    <p class="result-label">
+                        Converted amount
+                    </p>
+
+                    <h3
+                        id="currency-result"
+                        class="result-value currency-text"
+                    >
+                        —
+                    </h3>
+
+
+                    <p class="result-label mt-15">
+                        Exchange rate
+                    </p>
+
+                    <p
+                        id="currency-rate"
+                        class="currency-rate"
+                    >
+                        —
+                    </p>
+
+                </section>
+
+
+                <!-- ================= RATE SOURCE ================= -->
+
+                <aside class="tip-card currency-info currency-source" aria-labelledby="currency-source-title">
+
+                    <i
+                        class="ri-global-line tip-icon"
+                        aria-hidden="true"
+                    ></i>
+
+                    <div class="currency-source-content">
+                        <h3 id="currency-source-title">Rate Source</h3>
+                        <p class="source-name">European Central Bank (ECB)</p>
+                        <p class="source-type">Reference rate</p>
+                        <p id="currency-source-updated-label" class="source-updated-label" hidden>Updated</p>
+                        <p id="currency-source-date" class="source-updated" hidden>—</p>
+                        <p class="source-note">For reference only. Actual exchange rates may vary by provider.</p>
+                    </div>
+
+                </aside>
+
+            </section>
+
+        </div>
+
+
+        <section class="about-card tool-explanation" aria-labelledby="currency-about-title">
+            <h3 id="currency-about-title">About Currency Converter</h3>
+            <p>Convert currencies using current exchange rates. Useful for travelers checking prices in Bali against their home currency.</p>
+        </section>
+
+        <div class="ad-slot ad-slot-banner" data-ad-slot="BANNER_AD" data-ad-type="banner" aria-label="Advertisement">
+            <span>Advertisement</span>
+        </div>
+
+    </main>
+
+
+
+<!-- ==================== TRIP BUDGET ==================== -->
+<main id="page-budget" class="app-page">
+
+    <div class="container">
+
+        <header class="sub-header">
+
+            <button
+                class="btn-icon btn-back"
+                type="button"
+                data-target="page-home"
+                aria-label="Back to home"
+            >
+                <i
+                    class="ri-arrow-left-s-line"
+                    aria-hidden="true"
+                ></i>
+            </button>
+
+            <div class="sub-header-title">
+
+                <i
+                    class="ri-wallet-3-fill budget-icon"
+                    aria-hidden="true"
+                ></i>
+
+                <h2>Trip Budget</h2>
+
+            </div>
+
+            <div
+                class="header-spacer"
+                aria-hidden="true"
+            ></div>
+
+        </header>
+
+
+        <!-- ==================== BUDGET FORM ==================== -->
+
+        <section class="budget-calculator">
+
+
+            <!-- Number of Days -->
+
+            <div class="form-group">
+
+                <label for="budget-days">
+                    Number of days
+                </label>
+
+                <div class="input-wrapper">
+
+                    <input
+                        id="budget-days"
+                        type="number"
+                        min="1"
+                        step="1"
+                        inputmode="numeric"
+                        placeholder="5"
+                        autocomplete="off"
+                    >
+
+                    <span class="unit">
+                        days
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <!-- Accommodation -->
+
+            <div class="form-group">
+
+                <label for="budget-accommodation">
+                    Accommodation
+                </label>
+
+                <div class="input-wrapper">
+
+                    <input
+                        id="budget-accommodation"
+                        type="number"
+                        min="0"
+                        step="1"
+                        inputmode="numeric"
+                        placeholder="500000"
+                        autocomplete="off"
+                    >
+
+                    <span class="unit">
+                        IDR/day
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <!-- Food -->
+
+            <div class="form-group">
+
+                <label for="budget-food">
+                    Food
+                </label>
+
+                <div class="input-wrapper">
+
+                    <input
+                        id="budget-food"
+                        type="number"
+                        min="0"
+                        step="1"
+                        inputmode="numeric"
+                        placeholder="250000"
+                        autocomplete="off"
+                    >
+
+                    <span class="unit">
+                        IDR/day
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <!-- Transport -->
+
+            <div class="form-group">
+
+                <label for="budget-transport">
+                    Transport
+                </label>
+
+                <div class="input-wrapper">
+
+                    <input
+                        id="budget-transport"
+                        type="number"
+                        min="0"
+                        step="1"
+                        inputmode="numeric"
+                        placeholder="150000"
+                        autocomplete="off"
+                    >
+
+                    <span class="unit">
+                        IDR/day
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <!-- Activities -->
+
+            <div class="form-group">
+
+                <label for="budget-activities">
+                    Activities
+                </label>
+
+                <div class="input-wrapper">
+
+                    <input
+                        id="budget-activities"
+                        type="number"
+                        min="0"
+                        step="1"
+                        inputmode="numeric"
+                        placeholder="100000"
+                        autocomplete="off"
+                    >
+
+                    <span class="unit">
+                        IDR/day
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <!-- Miscellaneous -->
+
+            <div class="form-group">
+
+                <label for="budget-misc">
+                    Miscellaneous
+                </label>
+
+                <div class="input-wrapper">
+
+                    <input
+                        id="budget-misc"
+                        type="number"
+                        min="0"
+                        step="1"
+                        inputmode="numeric"
+                        placeholder="50000"
+                        autocomplete="off"
+                    >
+
+                    <span class="unit">
+                        IDR/day
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <!-- Calculate -->
+
+            <button
+                id="btn-calc-budget"
+                class="btn-primary budget-btn"
+                type="button"
+            >
+                Calculate Budget
+            </button>
+
+
+            <!-- ==================== RESULT ==================== -->
+
+            <section
+                class="result-card budget-result-card"
+                aria-live="polite"
+            >
+
+                <p class="result-label">
+                    Estimated daily budget
+                </p>
+
+                <h3
+                    id="budget-daily-result"
+                    class="result-value budget-text"
+                >
+                    —
+                </h3>
+
+
+                <p class="result-label mt-15">
+                    Estimated total trip
+                </p>
+
+                <h3
+                    id="budget-total-result"
+                    class="result-value budget-text"
+                >
+                    —
+                </h3>
+
+            </section>
+
+
+            <!-- Information -->
+
+            <aside class="tip-card budget-info">
+
+                <i
+                    class="ri-lightbulb-flash-line tip-icon"
+                    aria-hidden="true"
+                ></i>
+
+                <p>
+                    Enter your estimated daily expenses.
+                    The calculator multiplies them by your
+                    trip duration.
+                </p>
+
+            </aside>
+
+        </section>
+
+    
+
+        <section class="about-card tool-explanation" aria-labelledby="budget-about-title">
+            <h3 id="budget-about-title">About Trip Budget</h3>
+            <p>Estimate your total trip budget from daily accommodation, food, transport, activities, and other expenses.</p>
+        </section>
+
+        <div class="ad-slot ad-slot-banner" data-ad-slot="BANNER_AD" data-ad-type="banner" aria-label="Advertisement">
+            <span>Advertisement</span>
+        </div>
+</div>
+
+</main>
+
+
+
+<!-- ==================== SPLIT COST ==================== -->
+<main id="page-split" class="app-page">
+
+    <div class="container">
+
+        <header class="sub-header">
+
+            <button
+                class="btn-icon btn-back"
+                type="button"
+                data-target="page-home"
+                aria-label="Back to home"
+            >
+                <i
+                    class="ri-arrow-left-s-line"
+                    aria-hidden="true"
+                ></i>
+            </button>
+
+            <div class="sub-header-title">
+
+                <i
+                    class="ri-team-fill split-icon"
+                    aria-hidden="true"
+                ></i>
+
+                <h2>Split Cost</h2>
+
+            </div>
+
+            <div
+                class="header-spacer"
+                aria-hidden="true"
+            ></div>
+
+        </header>
+
+
+        <!-- ==================== SPLIT FORM ==================== -->
+
+        <section class="split-calculator">
+
+
+            <!-- Total Cost -->
+
+            <div class="form-group">
+
+                <label for="split-total">
+                    Total cost
+                </label>
+
+                <div class="input-wrapper">
+
+                    <input
+                        id="split-total"
+                        type="number"
+                        min="0"
+                        step="1"
+                        inputmode="numeric"
+                        placeholder="1000000"
+                        autocomplete="off"
+                    >
+
+                    <span class="unit">
+                        IDR
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <!-- Number of People -->
+
+            <div class="form-group">
+
+                <label for="split-people">
+                    Number of people
+                </label>
+
+                <div class="input-wrapper">
+
+                    <input
+                        id="split-people"
+                        type="number"
+                        min="1"
+                        step="1"
+                        inputmode="numeric"
+                        placeholder="4"
+                        autocomplete="off"
+                    >
+
+                    <span class="unit">
+                        people
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <!-- Calculate -->
+
+            <button
+                id="btn-calc-split"
+                class="btn-primary split-btn"
+                type="button"
+            >
+                Split Cost
+            </button>
+
+
+            <!-- ==================== RESULT ==================== -->
+
+            <section
+                class="result-card split-result-card"
+                aria-live="polite"
+            >
+
+                <p class="result-label">
+                    Cost per person
+                </p>
+
+                <h3
+                    id="split-result"
+                    class="result-value split-text"
+                >
+                    —
+                </h3>
+
+            </section>
+
+
+            <!-- Information -->
+
+            <aside class="tip-card split-info">
+
+                <i
+                    class="ri-team-line tip-icon"
+                    aria-hidden="true"
+                ></i>
+
+                <p>
+                    Enter the total cost and divide it
+                    equally among everyone in the group.
+                </p>
+
+            </aside>
+
+        </section>
+
+    
+
+        <section class="about-card tool-explanation" aria-labelledby="split-about-title">
+            <h3 id="split-about-title">About Split Cost</h3>
+            <p>Calculate how much each person should pay when sharing travel expenses with friends or family.</p>
+        </section>
+
+        <div class="ad-slot ad-slot-banner" data-ad-slot="BANNER_AD" data-ad-type="banner" aria-label="Advertisement">
+            <span>Advertisement</span>
+        </div>
+</div>
+
+</main>
+
+
+
+<!-- =====================================================
+     PAGE 6 — TRAVEL TIME
+     ===================================================== -->
+
+<main
+    id="page-travel-time"
+    class="app-page"
+>
+
+    <div class="container">
+
+        <header class="sub-header">
+
+            <button
+                class="btn-icon btn-back"
+                type="button"
+                data-target="page-home"
+                aria-label="Back to home"
+            >
+
+                <i
+                    class="ri-arrow-left-s-line"
+                    aria-hidden="true"
+                ></i>
+
+            </button>
+
+
+            <div class="sub-header-title">
+
+                <i
+                    class="ri-time-fill time-icon"
+                    aria-hidden="true"
+                ></i>
+
+                <h2>
+                    Travel Time
+                </h2>
+
+            </div>
+
+
+            <div
+                class="header-spacer"
+                aria-hidden="true"
+            ></div>
+
+        </header>
+
+
+        <!-- =================================================
+             TRAVEL TIME CALCULATOR
+             ================================================= -->
+
+        <section class="travel-time-calculator">
+
+
+            <!-- ================= DISTANCE ================= -->
+
+            <div class="form-group">
+
+                <label for="travel-time-distance">
+                    Distance
+                </label>
+
+                <div class="input-wrapper">
+
+                    <input
+                        id="travel-time-distance"
+                        type="number"
+                        min="0"
+                        step="any"
+                        inputmode="decimal"
+                        placeholder="85"
+                        autocomplete="off"
+                    >
+
+                    <span class="unit">
+                        km
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <!-- ================= SPEED ================= -->
+
+            <div class="form-group">
+
+                <label for="travel-time-speed">
+                    Average speed
+                </label>
+
+                <div class="input-wrapper">
+
+                    <input
+                        id="travel-time-speed"
+                        type="number"
+                        min="0"
+                        step="any"
+                        inputmode="decimal"
+                        placeholder="40"
+                        autocomplete="off"
+                    >
+
+                    <span class="unit">
+                        km/h
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <!-- ================= CALCULATE ================= -->
+
+            <button
+                id="btn-calc-travel-time"
+                class="btn-primary time-btn"
+                type="button"
+            >
+                Calculate Travel Time
+            </button>
+
+
+            <!-- ================= RESULT ================= -->
+
+            <section
+                class="result-card travel-time-result-card"
+                aria-live="polite"
+            >
+
+                <p class="result-label">
+                    Estimated travel time
+                </p>
+
+                <h3
+                    id="travel-time-result"
+                    class="result-value time-text"
+                >
+                    —
+                </h3>
+
+            </section>
+
+
+            <!-- ================= INFORMATION ================= -->
+
+            <aside class="tip-card travel-time-info">
+
+                <i
+                    class="ri-information-line tip-icon"
+                    aria-hidden="true"
+                ></i>
+
+                <p>
+                    Enter the distance and your average
+                    travel speed to estimate the journey time.
+                </p>
+
+            </aside>
+
+
+        </section>
+
+        <section class="about-card tool-explanation" aria-labelledby="travel-time-about-title">
+            <h3 id="travel-time-about-title">About Travel Time</h3>
+            <p>Estimate how long a journey may take based on distance and average travel speed. Actual travel time can vary with Bali traffic and road conditions.</p>
+        </section>
+
+        <div class="ad-slot ad-slot-banner" data-ad-slot="BANNER_AD" data-ad-type="banner" aria-label="Advertisement">
+            <span>Advertisement</span>
+        </div>
+
+    </div>
+
+</main>
+
+<!-- =====================================================
+     PAGE 7 — DISTANCE & SPEED
+     ===================================================== -->
+
+<main
+    id="page-distance-speed"
+    class="app-page"
+>
+
+    <div class="container">
+
+        <header class="sub-header">
+
+            <button
+                class="btn-icon btn-back"
+                type="button"
+                data-target="page-home"
+                aria-label="Back to home"
+            >
+
+                <i
+                    class="ri-arrow-left-s-line"
+                    aria-hidden="true"
+                ></i>
+
+            </button>
+
+
+            <div class="sub-header-title">
+
+                <i
+                    class="ri-map-pin-time-fill distance-icon"
+                    aria-hidden="true"
+                ></i>
+
+                <h2>
+                    Distance &amp; Speed
+                </h2>
+
+            </div>
+
+
+            <div
+                class="header-spacer"
+                aria-hidden="true"
+            ></div>
+
+        </header>
+
+
+        <!-- =================================================
+             DISTANCE & SPEED CALCULATOR
+             ================================================= -->
+
+        <section class="distance-speed-calculator">
+
+
+            <!-- ================= DISTANCE ================= -->
+
+            <div class="form-group">
+
+                <label for="distance-speed-distance">
+                    Distance
+                </label>
+
+                <div class="input-wrapper">
+
+                    <input
+                        id="distance-speed-distance"
+                        type="number"
+                        min="0"
+                        step="any"
+                        inputmode="decimal"
+                        placeholder="100"
+                        autocomplete="off"
+                    >
+
+                    <span class="unit">
+                        km
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <!-- ================= TIME ================= -->
+
+            <div class="form-group">
+
+                <label for="distance-speed-time">
+                    Travel time
+                </label>
+
+                <div class="input-wrapper">
+
+                    <input
+                        id="distance-speed-time"
+                        type="number"
+                        min="0"
+                        step="any"
+                        inputmode="decimal"
+                        placeholder="2.5"
+                        autocomplete="off"
+                    >
+
+                    <span class="unit">
+                        hours
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <!-- ================= CALCULATE ================= -->
+
+            <button
+                id="btn-calc-distance-speed"
+                class="btn-primary distance-btn"
+                type="button"
+            >
+                Calculate Speed
+            </button>
+
+
+            <!-- ================= RESULT ================= -->
+
+            <section
+                class="result-card distance-speed-result-card"
+                aria-live="polite"
+            >
+
+                <p class="result-label">
+                    Average speed
+                </p>
+
+                <h3
+                    id="distance-speed-result"
+                    class="result-value distance-text"
+                >
+                    —
+                </h3>
+
+            </section>
+
+
+            <!-- ================= INFORMATION ================= -->
+
+            <aside class="tip-card distance-speed-info">
+
+                <i
+                    class="ri-information-line tip-icon"
+                    aria-hidden="true"
+                ></i>
+
+                <p>
+                    Enter the distance and travel time
+                    to calculate the average speed.
+                </p>
+
+            </aside>
+
+
+        </section>
+
+        <section class="about-card tool-explanation" aria-labelledby="distance-speed-about-title">
+            <h3 id="distance-speed-about-title">About Distance & Speed</h3>
+            <p>Calculate distance, speed, or travel time when two of the three values are known.</p>
+        </section>
+
+        <div class="ad-slot ad-slot-banner" data-ad-slot="BANNER_AD" data-ad-type="banner" aria-label="Advertisement">
+            <span>Advertisement</span>
+        </div>
+
+    </div>
+
+</main>
+
+
+<!-- =========================================================
+     SETTINGS
+     ========================================================= -->
+
+<div id="settings-modal" class="modal-backdrop" hidden aria-hidden="true">
+    <section class="settings-modal" role="dialog" aria-modal="true" aria-labelledby="settings-title">
+        <header class="settings-header">
+            <h2 id="settings-title">Settings</h2>
+            <button id="btn-close-settings" class="btn-icon" type="button" aria-label="Close settings">
+                <i class="ri-close-line" aria-hidden="true"></i>
+            </button>
+        </header>
+        <div class="settings-body">
+            <button id="btn-reset-app" class="settings-action" type="button">
+                <i class="ri-refresh-line" aria-hidden="true"></i>
+                <span>Reset calculator inputs</span>
+            </button>
+
+            <section class="settings-about" aria-labelledby="settings-about-title">
+                <h3 id="settings-about-title">About</h3>
+                <img
+                    class="settings-logo"
+                    src="PENGGILAS_logo_transparent.webp?v=20261009-01"
+                    alt="PENGGILAS — Think Right, Know Why"
+                >
+                <h4>Bali Travel Calculator</h4>
+                <p>Simple, practical tools for planning your Bali trip.</p>
+                <p>Calculate fuel costs, convert currencies, estimate trip budgets, split travel expenses, and calculate travel time, distance, and speed.</p>
+                <p>Designed to help travelers make quick estimates and plan with confidence while exploring Bali.</p>
+                <span class="settings-version">Version 1.0</span>
+            </section>
+        </div>
+    </section>
+</div>
+
+
+<!-- =========================================================
+     DATA
+     ========================================================= -->
+
+<script src="data/currencies.js?v=20261009-01"></script>
+
+
+
+<!-- =========================================================
+     SERVICES
+     ========================================================= -->
+
+<script src="services/ads.js?v=20261009-01"></script>
+
+
+
+<!-- =========================================================
+     TOOLS
+     ========================================================= -->
+
+<script src="tools/fuel.js?v=20261009-01"></script>
+<script src="tools/currencies.js?v=20261009-01"></script>
+<script src="tools/budget.js?v=20261009-01"></script>
+<script src="tools/split.js?v=20261009-01"></script>
+<script src="tools/travel-time.js?v=20261009-01"></script>
+<script src="tools/distance-speed.js?v=20261009-01"></script>
+
+  
+
+
+
+
+<!-- =========================================================
+     MAIN APPLICATION
+     ========================================================= -->
+
+<script src="app.js?v=20261009-01"></script>
+
+</body>
+</html>
