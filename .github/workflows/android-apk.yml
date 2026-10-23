@@ -31,9 +31,11 @@ jobs:
         with:
           distribution: temurin
           java-version: '21'
-
       - name: Set up Android SDK
         uses: android-actions/setup-android@v3
+        with:
+          cmdline-tools-version: '15859902'
+          packages: platform-tools
 
       - name: Install project dependencies
         run: npm install
